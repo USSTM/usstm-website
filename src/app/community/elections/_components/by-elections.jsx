@@ -2,13 +2,12 @@
 import { useId, useState } from "react";
 import Image from "next/image";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
 
 /*
  * 2026 By-Elections candidates.
  * Headshots live in /public/images/elections/byelections-2026/.
- * Empty `socials` / `email` values render as muted "coming soon" icons so
- * every candidate keeps the same layout.
+ * Empty `socials` values render as muted "coming soon" icons so every
+ * candidate keeps the same layout. `email` shows as grey text under the name.
  * Candidates are sorted alphabetically within each position for fairness.
  */
 const POSITIONS = [
@@ -200,7 +199,12 @@ function CandidateCard({ candidate }) {
 				<h4 className="pt-5 text-2xl lg:text-3xl font-serif font-semibold tracking-wide text-balance">
 					{name}
 				</h4>
-				<p className="pt-1 text-lg text-highlight-dark">
+				{email && (
+					<p className="pt-0.5 text-sm lg:text-base text-foreground/70 break-all">
+						{email}
+					</p>
+				)}
+				<p className="pt-2 text-lg text-highlight-dark">
 					{position} Candidate
 				</p>
 
@@ -214,12 +218,6 @@ function CandidateCard({ candidate }) {
 							Icon={Icon}
 						/>
 					))}
-					<ContactIcon
-						href={email ? `mailto:${email}` : ""}
-						label="Email"
-						name={name}
-						Icon={MdOutlineEmail}
-					/>
 				</div>
 			</div>
 
