@@ -26,7 +26,16 @@ jobs:
           git checkout public -- public
           mkdir out
           cp -r public/* out/
+      - name: Detect GitHub Pages base path
+        id: pages
+        uses: actions/configure-pages@v5
+        # Not available on every event (e.g. PRs); fall back to serving from the root.
+        continue-on-error: true
       - name: Build using Next.JS
+        # "/usstm-website" while served from usstm.github.io/usstm-website,
+        # "" automatically once a custom domain (usstm.ca) is set in Pages settings.
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run:  npx next build
       - name: Upload static website
         uses: actions/upload-pages-artifact@v3

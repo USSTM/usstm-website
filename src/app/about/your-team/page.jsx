@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/app/_components/general/header";
+import { withBasePath } from "@/lib/base-path";
 import { useContent } from "@/lib/use-content";
 import Carousel from "./_components/carousel";
 
@@ -40,7 +41,7 @@ export default function YourTeam() {
 
               <p className=" pt-2">{committee.description}</p>
 
-              <a href={`/about/your-team/${committee.path}`}>
+              <a href={withBasePath(`/about/your-team/${committee.path}`)}>
                 <button className="w-full box-border bg-highlight-dark text-background py-3 my-4 rounded-sm font-medium hover:text-highlight-dark hover:bg-background hover:border hover:border-highlight-dark hover:ease-in-out duration-300">
                   Meet the Team
                 </button>
