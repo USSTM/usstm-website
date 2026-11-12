@@ -1,6 +1,7 @@
 "use client";
 import { useId, useState } from "react";
 import Image from "next/image";
+import { withBasePath } from "@/lib/base-path";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 /*
@@ -178,7 +179,7 @@ function CandidateCard({ candidate }) {
 				<div className="w-36 sm:w-40 lg:w-44 aspect-square relative overflow-hidden rounded-full shadow-md bg-highlight-blue ring-4 ring-background">
 					{image ? (
 						<Image
-							src={`/images/elections/byelections-2026/${image}`}
+							src={withBasePath(`/images/elections/byelections-2026/${image}`)}
 							alt={`Headshot of ${name}`}
 							fill
 							sizes="(min-width: 1024px) 11rem, 10rem"
