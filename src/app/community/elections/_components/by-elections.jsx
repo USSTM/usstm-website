@@ -1,14 +1,14 @@
 "use client";
 import { useId, useState } from "react";
 import Image from "next/image";
-import { FaDiscord, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 /*
  * 2026 By-Elections candidates.
  * Headshots live in /public/images/elections/byelections-2026/.
- * Fill in `socials` / `email` once candidates send them; empty values render
- * as muted "coming soon" icons so every candidate keeps the same layout.
+ * Empty `socials` / `email` values render as muted "coming soon" icons so
+ * every candidate keeps the same layout.
  * Candidates are sorted alphabetically within each position for fairness.
  */
 const POSITIONS = [
@@ -20,8 +20,11 @@ const POSITIONS = [
 				position: "VP Externals",
 				image: "saaruca-rasakumar.jpg",
 				imagePosition: "50% 30%",
-				email: "",
-				socials: { instagram: "", linkedin: "", discord: "" },
+				email: "saaruca.rasakumar@torontomu.ca",
+				socials: {
+					instagram: "https://www.instagram.com/_saaruca/",
+					linkedin: "https://www.linkedin.com/in/saaruca/",
+				},
 				bio: [
 					"Hi everyone! My name is Saaruca Rasakumar, and I'm a Biomedical Science student at Toronto Metropolitan University running for VP Externals of the Undergraduate Science Society (USSTM)!",
 					"As a science student, I understand how important it is to have access to meaningful opportunities, supportive communities, and connections that extend beyond the classroom. I'm passionate about bringing people together, encouraging student involvement, and helping students make the most of their university experience.",
@@ -40,8 +43,11 @@ const POSITIONS = [
 				position: "CS Director",
 				image: "aayan-areejo.jpg",
 				imagePosition: "50% 44%",
-				email: "",
-				socials: { instagram: "", linkedin: "", discord: "" },
+				email: "aayan.areejo@torontomu.ca",
+				socials: {
+					instagram: "https://www.instagram.com/aayanareejo/",
+					linkedin: "https://www.linkedin.com/in/aayanareejo/",
+				},
 				bio: [
 					"Hey, I'm Aayan! Big on photography, new tech, and the odd casual game to unwind. Most days you'll catch me with a camera in hand or a fun side project in the works.",
 				],
@@ -49,10 +55,21 @@ const POSITIONS = [
 			{
 				name: "Azeem Cochinwala",
 				position: "CS Director",
-				image: "",
-				email: "",
-				socials: { instagram: "", linkedin: "", discord: "" },
-				bio: [],
+				image: "azeem-cochinwala.jpg",
+				imagePosition: "50% 26%",
+				email: "azeem.cochinwala@torontomu.ca",
+				socials: {
+					instagram: "https://www.instagram.com/azeem_40/",
+					linkedin: "https://www.linkedin.com/in/azeem-cochinwala/",
+				},
+				bio: [
+					"Hello there!",
+					"My name is Azeem Cochinwala, and I am the previously elected CS Director for the 2025/2026 Academic Year, running for re-election.",
+					"Having previously served in this role, I bring experience in advocating for students, supporting and guiding student groups, and understanding the needs of the Computer Science community.",
+					"During my time on the board, I also served as the Deputy VP Finance of USSTM, where our committee was honoured with the \"Best Committee\" Recognition Award.",
+					"Furthermore, as the current VP Finance of CSCU, I believe I can step back into this position with the experience, knowledge, and dedication needed to continue advocating for Computer Science students and student groups, ensuring their voices are heard, their initiatives are supported, and their interests are represented.",
+					"Thank you!",
+				],
 			},
 		],
 	},
@@ -61,7 +78,6 @@ const POSITIONS = [
 const SOCIALS = [
 	{ key: "instagram", label: "Instagram", Icon: FaInstagram },
 	{ key: "linkedin", label: "LinkedIn", Icon: FaLinkedinIn },
-	{ key: "discord", label: "Discord", Icon: FaDiscord },
 ];
 
 const byName = (a, b) => a.name.localeCompare(b.name);
@@ -117,11 +133,18 @@ function Bio({ name, bio }) {
 		);
 	}
 
-	const [lead, ...rest] = bio;
+	// Show a short greeting together with the paragraph that follows it.
+	const leadCount = bio[0].length < 60 ? 2 : 1;
+	const lead = bio.slice(0, leadCount);
+	const rest = bio.slice(leadCount);
 
 	return (
 		<div>
-			<p>{lead}</p>
+			{lead.map((paragraph, i) => (
+				<p key={i} className={i > 0 ? "pt-3" : undefined}>
+					{paragraph}
+				</p>
+			))}
 			{rest.length > 0 && (
 				<>
 					<div id={id} hidden={!open}>
