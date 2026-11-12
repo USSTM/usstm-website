@@ -4,6 +4,7 @@ import { getImageUrl } from "@/lib/supabase";
 import { useContentItem } from "@/lib/use-content";
 import Image from "next/image";
 import Link from "next/link";
+import ByElections from "./_components/by-elections";
 
 export default function Elections() {
 	const { data } = useContentItem("community", "election-results");
@@ -12,10 +13,17 @@ export default function Elections() {
 
 	return (
 		<section className="elections-page lg:text-lg">
-			<Header title="Elections" />
+			<Header title="2026 By-Elections" />
 			<div className="main">
+				{/* 2026 By-Elections */}
+				<ByElections />
+
 				{/* Introduction */}
-				<div id="introduction" className="px-6 pb-6">
+				<div id="introduction" className="px-6 pb-6 pt-20 lg:pt-24 max-w-6xl mx-auto">
+					<hr className="border border-gray-400 w-11/12 md:w-4/5 mx-auto mb-12" />
+					<h2 className="py-2 text-2xl lg:text-3xl xl:text-4xl font-serif font-semibold tracking-wide">
+						About USSTM Elections
+					</h2>
 					<p className="block py-2">
 						Each year, the Undergrad Science Society of Toronto
 						Metropolitan (USSTM) conducts an election cycle to
@@ -61,8 +69,9 @@ export default function Elections() {
 					</p>
 				</div>
 
-				<div className="content px-6">
-					{/* Timeline */}
+				<div className="content px-6 max-w-6xl mx-auto">
+					{/* Hidden during the 2026 By-Elections: regular-cycle Timeline and Eligibility Rules.
+					 Timeline 
 					<div id="timeline">
 						<h2 className="py-2 text-2xl lg:text-3xl xl:text-4xl font-serif font-semibold tracking-wide">
 							Timeline
@@ -88,7 +97,7 @@ export default function Elections() {
 						</section>
 					</div>
 
-					{/* Eligibity Rules */}
+					 Eligibity Rules 
 					<div id="eligibility-rules">
 						<h2 className="pb-4 pt-7 text-2xl lg:text-3xl xl:text-4xl font-serif font-semibold tracking-wide">
 							Eligibility Rules
@@ -106,6 +115,8 @@ export default function Elections() {
 							</p>
 						</div>
 					</div>
+
+					*/}
 
 					{/* Campaigning Rules */}
 					<div id="campaigning-rules">
