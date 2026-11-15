@@ -1,7 +1,6 @@
 "use client";
 
 import Image from 'next/image';
-import { withBasePath } from "@/lib/base-path";
 import Header from '@/app/_components/general/header';
 import Tickets from './tickets';
 import { Suspense, useState } from 'react';
@@ -58,7 +57,7 @@ export default function Formal() {
         </p>
 
         <Image
-          src={withBasePath("/images/events/formal/liberty-grand.jpg")}
+          src="/images/events/formal/liberty-grand.jpg"
           alt="Liberty Grand Hotel"
           className="rounded-2xl shadow-lg mb-8 mx-auto w-4/5 lg:w-1/2 h-auto"
           width={800}
